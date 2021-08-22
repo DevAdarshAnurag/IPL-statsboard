@@ -1,7 +1,13 @@
 package com.adarsh.ipl.statsboard.Model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "ball_stats")
 public class BallStats {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private long matchId;
     private int inning;
