@@ -3,13 +3,14 @@ package com.adarsh.ipl.statsboard.Service;
 import com.adarsh.ipl.statsboard.Model.BallStats;
 import com.adarsh.ipl.statsboard.Repository.BallStatsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Service
 public class StatsService {
 
     private final BallStatsRepository ballStatsRepository;
@@ -62,6 +63,9 @@ public class StatsService {
         {
             if(b.getIsWicket() == 1)
             {
+                if(b.getBowlingTeam().equals("NA"))
+                    System.out.println(b.getDismissalKind() + " " + b.getBattingTeam()+ " " + b.getBatsman()
+                            + " "+b.getPlayerDismissed() +" "+ b.getOver() + b.getBall()+" " + b.getExtrasType()+" " + b.getMatchId());
                 int count = map.getOrDefault(b.getBowlingTeam(), 0);
                 map.put(b.getBowlingTeam(), count + 1);
             }
