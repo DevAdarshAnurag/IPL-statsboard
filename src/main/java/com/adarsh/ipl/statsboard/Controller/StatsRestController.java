@@ -20,20 +20,17 @@ public class StatsRestController {
     }
 
     @GetMapping("/most-sixes-by-team")
-    public HashMap<String, Integer> getMostSixesByTeam()
-    {
+    public HashMap<String, Integer> getMostSixesByTeam() {
         return statsService.getMostSixesByTeam();
     }
 
     @GetMapping("/most-fours-by-team")
-    public HashMap<String, Integer> getMostFoursByTeam()
-    {
+    public HashMap<String, Integer> getMostFoursByTeam() {
         return statsService.getMostFoursByTeam();
     }
 
     @GetMapping("/most-wickets-taken-by-team")
-    public HashMap<String, Integer> getMostWicketsTakenByTeam()
-    {
+    public HashMap<String, Integer> getMostWicketsTakenByTeam() {
         return statsService.getMostWicketsTakenByTeam();
     }
 
