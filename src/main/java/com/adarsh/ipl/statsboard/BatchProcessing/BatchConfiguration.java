@@ -24,7 +24,7 @@ import javax.sql.DataSource;
 @EnableBatchProcessing
 public class BatchConfiguration {
 
-    private final static String[] FIELD_NAMES = {"id","inning","over","ball","batsman","non_striker","bowler","batsman_runs","extra_runs","total_runs","non_boundary","is_wicket","dismissal_kind","player_dismissed","fielder","extras_type","batting_team","bowling_team"};
+    private final static String[] FIELD_NAMES = {"id", "inning", "over", "ball", "batsman", "non_striker", "bowler", "batsman_runs", "extra_runs", "total_runs", "non_boundary", "is_wicket", "dismissal_kind", "player_dismissed", "fielder", "extras_type", "batting_team", "bowling_team"};
 
     @Autowired
     public JobBuilderFactory jobBuilderFactory;
@@ -73,7 +73,7 @@ public class BatchConfiguration {
     @Bean
     public Step step1(JdbcBatchItemWriter<BallStats> writer) {
         return stepBuilderFactory.get("step1")
-                .<BallInput, BallStats> chunk(10)
+                .<BallInput, BallStats>chunk(10)
                 .reader(reader())
                 .processor(processor())
                 .writer(writer)
