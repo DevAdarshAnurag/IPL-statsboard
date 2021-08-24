@@ -12,7 +12,7 @@
 <body class="d-flex flex-column min-vh-100">
 <header>
     <!--nav bar-->
-    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <nav class="navbar navbar-dark sticky-top bg-dark navbar-expand-lg">
         <a class="navbar-brand" href="#">IPL Stats-Board</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,10 +24,10 @@
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Batting</a>
+                    <a class="nav-link" href="#batting">Batting</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Bowling</a>
+                    <a class="nav-link" href="#bowling">Bowling</a>
                 </li>
             </ul>
         </div>
@@ -48,6 +48,37 @@
     </div>
     <!-- background -->
 </header>
+<div id="batting" class="jumbotron">
+    <div class="card">
+        <div class="card-header">
+            <h5>Batting Stats by Team</h5>
+        </div>
+        <div class="card-body">
+            <p class="card-title">Click items to view stats</p>
+            <a href="#" class="btn btn-primary m-1">Most 6s</a>
+            <a href="#" class="btn btn-primary m-1">Most 4s</a>
+            <a href="#" class="btn btn-primary m-1">Most runs</a>
+            <a href="#" class="btn btn-primary m-1">Most runs in powerplay</a>
+            <a href="#" class="btn btn-primary m-1">Most runs in death</a>
+        </div>
+    </div>
+</div>
+
+<div id="bowling" class="jumbotron">
+    <div class="card">
+        <div class="card-header">
+            <h5>Bowling Stats by Team</h5>
+        </div>
+        <div class="card-body">
+            <p class="card-title">Click items to view stats</p>
+            <a href="#" class="btn btn-primary m-1">Most wickets taken</a>
+            <a href="#" class="btn btn-primary m-1">Most caught out</a>
+            <a href="#" class="btn btn-primary m-1">Most run outs</a>
+            <a href="#" class="btn btn-primary m-1">Most wickets in powerplay</a>
+            <a href="#" class="btn btn-primary m-1">Most wickets in death</a>
+        </div>
+    </div>
+</div>
 <footer class="bg-dark text-center text-lg-start text-white mt-auto">
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
