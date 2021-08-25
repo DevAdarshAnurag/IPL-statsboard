@@ -1,6 +1,6 @@
 package com.adarsh.ipl.statsboard.Controller;
 
-import com.adarsh.ipl.statsboard.Model.Pair;
+import com.adarsh.ipl.statsboard.Model.Triple;
 import com.adarsh.ipl.statsboard.Service.StatsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -81,9 +81,9 @@ public class StatsController {
     }
 
     @RequestMapping(value = "/team_vs_team_table", method= RequestMethod.POST)
-    public String getTeamVsTeamTable(@RequestParam(value = "team1", required = false) String team1, @RequestParam(value = "team2", required = false) String team2, Model model)
+    public String getTeamVsTeamTable(@RequestParam(value = "team1", required = true) String team1, @RequestParam(value = "team2", required = true) String team2, Model model)
     {
-        List<Pair<Integer>> statsList = statsService.getTeamVSTeamStats(team1, team2);
+        List<Triple<Integer, String, Integer>> statsList = statsService.getTeamVSTeamStats(team1, team2);
         model.addAttribute("team1", team1);
         model.addAttribute("team2", team2);
         model.addAttribute("stats", statsList);

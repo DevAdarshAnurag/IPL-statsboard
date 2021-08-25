@@ -1,7 +1,7 @@
 package com.adarsh.ipl.statsboard.Service;
 
 import com.adarsh.ipl.statsboard.Model.BallStats;
-import com.adarsh.ipl.statsboard.Model.Pair;
+import com.adarsh.ipl.statsboard.Model.Triple;
 import com.adarsh.ipl.statsboard.Repository.BallStatsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -159,14 +159,14 @@ public class StatsService {
         return map;
     }
 
-    public List<Pair<Integer>> getTeamVSTeamStats(String teamName1, String teamName2) {
+    public List<Triple<Integer, String, Integer>> getTeamVSTeamStats(String teamName1, String teamName2) {
         List<BallStats> team1 = ballStatsRepository.findByBattingTeamAndBowlingTeam(teamName1, teamName2);
         List<BallStats> team2 = ballStatsRepository.findByBattingTeamAndBowlingTeam(teamName2, teamName1);
         System.out.println(team1.size() + " " + team2.size());
-        List<Pair<Integer>> statsList = new ArrayList<>();
+        List<Triple<Integer, String, Integer>> statsList = new ArrayList<>();
         for(int i=0; i<10; i++)
         {
-            statsList.add(new Pair(i, i+1));
+            statsList.add(new Triple(i, "Stats",i+1));
         }
         return statsList;
     }
