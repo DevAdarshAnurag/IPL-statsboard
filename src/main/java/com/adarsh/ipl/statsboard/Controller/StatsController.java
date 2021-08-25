@@ -1,13 +1,17 @@
 package com.adarsh.ipl.statsboard.Controller;
 
+import com.adarsh.ipl.statsboard.Model.Pair;
 import com.adarsh.ipl.statsboard.Service.StatsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 public class StatsController {
@@ -74,6 +78,16 @@ public class StatsController {
                 break;
         }
         return "stats_table";
+    }
+
+    @RequestMapping(value = "/team_vs_team_table", method= RequestMethod.POST)
+    public String getTeamVsTeamTable(@RequestParam(value = "team1", required = false) String team1, @RequestParam(value = "team2", required = false) String team2, Model model)
+    {
+        List<Pair<Integer>> statsList = statsService.getTeamVSTeamStats(team1, team2);
+        model.addAttribute("team1", team1);
+        model.addAttribute("team2", team2);
+        model.addAttribute("stats", statsList);
+        return "team_vs_team_table";
     }
 
 }
