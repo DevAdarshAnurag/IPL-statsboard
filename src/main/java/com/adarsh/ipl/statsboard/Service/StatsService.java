@@ -132,7 +132,7 @@ public class StatsService {
     }
 
     public HashMap<String, Integer> getMostWicketsTakenInPowerPlayByTeam() {
-        List<BallStats> ballStats = ballStatsRepository.findByIsWicketAndOverLessThan(1, 7);
+        List<BallStats> ballStats = ballStatsRepository.findByIsWicketAndOverLessThan(1, 6);
         HashMap<String, Integer> map = new HashMap<>();
         for (BallStats b : ballStats) {
             int count = map.getOrDefault(b.getBowlingTeam(), 0);
@@ -160,14 +160,48 @@ public class StatsService {
     }
 
     public List<Triple<Integer, String, Integer>> getTeamVSTeamStats(String teamName1, String teamName2) {
-        List<BallStats> team1 = ballStatsRepository.findByBattingTeamAndBowlingTeam(teamName1, teamName2);
-        List<BallStats> team2 = ballStatsRepository.findByBattingTeamAndBowlingTeam(teamName2, teamName1);
-        System.out.println(team1.size() + " " + team2.size());
-        List<Triple<Integer, String, Integer>> statsList = new ArrayList<>();
-        for(int i=0; i<10; i++)
+        String[] statsName = {"6s", "4s", "Runs Scored", "Runs in PowerPlay", "Runs in Death",
+                "Wickets Taken", "Wickets in PowerPlay", "Wickets in Death"};
+        Long[] stats1 = {ballStatsRepository.countByBatsmanRunsAndBattingTeamAndBowlingTeam(6,teamName1, teamName2),
+                ballStatsRepository.countByBatsmanRunsAndBattingTeamAndBowlingTeam(4,teamName1, teamName2),
+                0l,
+                0l, 0l,
+                ballStatsRepository.countByIsWicketAndBattingTeamAndBowlingTeam(1, teamName2, teamName1),
+                ballStatsRepository.countByIsWicketAndBattingTeamAndBowlingTeamAndOverLessThan(1, teamName2, teamName1, 6),
+                ballStatsRepository.countByIsWicketAndBattingTeamAndBowlingTeamAndOverGreaterThan(1, teamName2, teamName1, 15)};
+        Long[] stats2 = {ballStatsRepository.countByBatsmanRunsAndBattingTeamAndBowlingTeam(6,teamName2, teamName1),
+                ballStatsRepository.countByBatsmanRunsAndBattingTeamAndBowlingTeam(4,teamName2, teamName1),
+                0l,
+                0l, 0l,
+                ballStatsRepository.countByIsWicketAndBattingTeamAndBowlingTeam(1, teamName1, teamName2),
+                ballStatsRepository.countByIsWicketAndBattingTeamAndBowlingTeamAndOverLessThan(1, teamName1, teamName2, 6),
+                ballStatsRepository.countByIsWicketAndBattingTeamAndBowlingTeamAndOverGreaterThan(1, teamName1, teamName2, 15)};
+
+        List<BallStats> ballStats = ballStatsRepository.findByTotalRunsGreaterThanAndBattingTeamAndBowlingTeam(0, teamName1, teamName2);
+        for(BallStats b:ballStats)
         {
-            statsList.add(new Triple(i, "Stats",i+1));
+            stats1[2] += b.getTotalRuns();
+            if(b.getOver() < 6)
+                stats1[3] += b.getTotalRuns();
+            if(b.getOver() > 15)
+                stats1[4] += b.getTotalRuns();
         }
+        ballStats = ballStatsRepository.findByTotalRunsGreaterThanAndBattingTeamAndBowlingTeam(0, teamName2, teamName1);
+        for(BallStats b:ballStats)
+        {
+            stats2[2] += b.getTotalRuns();
+            if(b.getOver() < 6)
+                stats2[3] += b.getTotalRuns();
+            if(b.getOver() > 15)
+                stats2[4] += b.getTotalRuns();
+        }
+
+        List<Triple<Integer, String, Integer>> statsList = new ArrayList<>();
+        for(int i=0; i< statsName.length; i++)
+        {
+            statsList.add(new Triple(stats1[i], statsName[i],stats2[i]));
+        }
+
         return statsList;
     }
 }

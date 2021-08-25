@@ -4,6 +4,7 @@ import com.adarsh.ipl.statsboard.Model.BallStats;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -21,10 +22,20 @@ public interface BallStatsRepository extends CrudRepository<BallStats, Long> {
 
     List<BallStats> findByDismissalKind(String dismissalKind);
 
+    List<BallStats> findByTotalRunsGreaterThanAndBattingTeamAndBowlingTeam(int totalRuns, String battingTeam, String bowlingTeam);
+
     List<BallStats> findByTotalRunsGreaterThanAndOverGreaterThan(int totalRuns, int over);
 
     List<BallStats> findByTotalRunsGreaterThanAndOverLessThan(int totalRuns, int over);
 
     List<BallStats> findByTotalRunsGreaterThan(int totalRuns);
+
+    long countByBatsmanRunsAndBattingTeamAndBowlingTeam(int batsmanRuns, String battingTeam, String bowlingTeam);
+
+    long countByIsWicketAndBattingTeamAndBowlingTeam(int isWicket, String battingTeam, String bowlingTeam);
+
+    long countByIsWicketAndBattingTeamAndBowlingTeamAndOverGreaterThan(int isWicket, String battingTeam, String bowlingTeam, int over);
+
+    long countByIsWicketAndBattingTeamAndBowlingTeamAndOverLessThan(int isWicket, String battingTeam, String bowlingTeam, int over);
 
 }
