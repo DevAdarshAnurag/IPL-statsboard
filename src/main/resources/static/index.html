@@ -15,6 +15,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
+    <script src="script/script.js"></script>
 </head>
 <body class="d-flex flex-column min-vh-100">
 <header>
@@ -36,6 +37,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#fielding">Fielding</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#teamvsteam">Fielding</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -55,40 +59,79 @@
     </div>
     <!-- background -->
 </header>
-<!--batting-->
-<div id="batting" class="jumbotron">
-    <div class="card">
-        <div class="card-header">
-            <h5>Batting Stats by Team</h5>
-        </div>
-        <div class="card-body">
-            <p class="card-title">Click items to view stats</p>
-            <a href="/stats_table?type=b0" class="btn btn-primary m-1">Most 6s</a>
-            <a href="/stats_table?type=b1" class="btn btn-primary m-1">Most 4s</a>
-            <a href="/stats_table?type=b2" class="btn btn-primary m-1">Most runs</a>
-            <a href="/stats_table?type=b3" class="btn btn-primary m-1">Most runs in powerplay</a>
-            <a href="/stats_table?type=b4" class="btn btn-primary m-1">Most runs in death</a>
-        </div>
-    </div>
-</div>
-<!--batting-->
-<!--fielding-->
-<div id="fielding" class="jumbotron">
-    <div class="card">
-        <div class="card-header">
-            <h5>Fielding Stats by Team</h5>
-        </div>
-        <div class="card-body">
-            <p class="card-title">Click items to view stats</p>
-            <a href="/stats_table?type=f0" class="btn btn-primary m-1">Most wickets taken</a>
-            <a href="/stats_table?type=f1" class="btn btn-primary m-1">Most caught out</a>
-            <a href="/stats_table?type=f2" class="btn btn-primary m-1">Most run outs</a>
-            <a href="/stats_table?type=f3" class="btn btn-primary m-1">Most wickets in powerplay</a>
-            <a href="/stats_table?type=f4" class="btn btn-primary m-1">Most wickets in death</a>
+<div class="container">
+    <!--batting-->
+    <div id="batting" class="jumbotron">
+        <div class="card">
+            <div class="card-header">
+                <h5>Batting Stats by Team</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-title">Click items to view stats</p>
+                <a href="/stats_table?type=b0" class="btn btn-primary m-1">Most 6s</a>
+                <a href="/stats_table?type=b1" class="btn btn-primary m-1">Most 4s</a>
+                <a href="/stats_table?type=b2" class="btn btn-primary m-1">Most runs</a>
+                <a href="/stats_table?type=b3" class="btn btn-primary m-1">Most runs in powerplay</a>
+                <a href="/stats_table?type=b4" class="btn btn-primary m-1">Most runs in death</a>
+            </div>
         </div>
     </div>
+    <!--batting-->
+    <!--fielding-->
+    <div id="fielding" class="jumbotron">
+        <div class="card">
+            <div class="card-header">
+                <h5>Fielding Stats by Team</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-title">Click items to view stats</p>
+                <a href="/stats_table?type=f0" class="btn btn-primary m-1">Most wickets taken</a>
+                <a href="/stats_table?type=f1" class="btn btn-primary m-1">Most caught out</a>
+                <a href="/stats_table?type=f2" class="btn btn-primary m-1">Most run outs</a>
+                <a href="/stats_table?type=f3" class="btn btn-primary m-1">Most wickets in powerplay</a>
+                <a href="/stats_table?type=f4" class="btn btn-primary m-1">Most wickets in death</a>
+            </div>
+        </div>
+    </div>
+    <!--fielding-->
+    <!--team vs team-->
+    <div id="teamvsteam" class="jumbotron">
+        <div class="card">
+            <div class="card-header">
+                <h5>Team vs Team</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-title">Select teams</p>
+                <form class="form-inline" action="/team_vs_team_table" method="POST">
+                    <select name="team1" class="form-control-sm m-1" required>
+                        <option selected disabled>Team 1</option>
+                        <option value="Chennai Super Kings"> Chennai Super Kings</option>
+                        <option value="Delhi Capitals"> Delhi Capitals</option>
+                        <option value="Kolkata Knight Riders"> Kolkata Knight Riders</option>
+                        <option value="Mumbai Indians"> Mumbai Indians</option>
+                        <option value="Kings XI Punjab"> Kings XI Punjab</option>
+                        <option value="Rajasthan Royals"> Rajasthan Royals</option>
+                        <option value="Royal Challengers Bangalore"> Royal Challengers Bangalore</option>
+                        <option value="Sunrisers Hyde"> Sunrisers Hyderabad</option>
+                    </select>
+                    <select name="team2" class="form-control-sm m-1" required>
+                        <option selected disabled>Team 2</option>
+                        <option value="Chennai Super Kings"> Chennai Super Kings</option>
+                        <option value="Delhi Capitals"> Delhi Capitals</option>
+                        <option value="Kolkata Knight Riders"> Kolkata Knight Riders</option>
+                        <option value="Mumbai Indians"> Mumbai Indians</option>
+                        <option value="Kings XI Punjab"> Kings XI Punjab</option>
+                        <option value="Rajasthan Royals"> Rajasthan Royals</option>
+                        <option value="Royal Challengers Bangalore"> Royal Challengers Bangalore</option>
+                        <option value="Sunrisers Hyderabad"> Sunrisers Hyderabad</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary m-1">Go</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--team vs team-->
 </div>
-<!--fielding-->
 <footer class="bg-dark text-center text-lg-start text-white mt-auto">
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
